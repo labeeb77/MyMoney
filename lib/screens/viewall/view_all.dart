@@ -16,6 +16,7 @@ class History extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     TransactionsDB.instance.refresh();
     return Scaffold(
       resizeToAvoidBottomInset :false,
