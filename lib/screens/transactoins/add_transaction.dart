@@ -37,7 +37,6 @@ class _AddTransactionsState extends State<AddTransactions> {
   void initState() {
     super.initState();
     TransactionsDB.instance.refresh();
-  
   }
 
   Future<void> addToTransaction() async {
@@ -72,6 +71,7 @@ class _AddTransactionsState extends State<AddTransactions> {
     );
 
     TransactionsDB.instance.addToTransaction(models);
+    TransactionsDB.instance.refresh();
     Navigator.of(context).pop();
     AnimatedSnackBar.rectangle('Success', 'Transaction Added successfully..',
             type: AnimatedSnackBarType.success,
@@ -88,11 +88,12 @@ class _AddTransactionsState extends State<AddTransactions> {
 
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title:  Text('Add Transactions', style: GoogleFonts.quicksand(color: const Color.fromARGB(255, 255, 255, 255))),
+        title: Text('Add Transactions',
+            style: GoogleFonts.quicksand(
+                color: const Color.fromARGB(255, 255, 255, 255))),
         centerTitle: true,
         backgroundColor: ThemeColor.themeColors,
       ),
@@ -113,17 +114,13 @@ class _AddTransactionsState extends State<AddTransactions> {
                         'Income',
                         style: TextStyle(color: Colors.white),
                       ),
-
                       selected:
                           selectedCategoryType.value == CategoryType.income,
-                     
                       selectedColor: const Color.fromARGB(255, 0, 148, 67),
                       disabledColor: const Color.fromARGB(255, 129, 128, 128),
                       onSelected: (bool selected) {
                         setState(
                           () {
-                           
-
                             selectedCategoryType.value = CategoryType.income;
                             _categoryId = null;
                           },
@@ -136,13 +133,11 @@ class _AddTransactionsState extends State<AddTransactions> {
                           style: TextStyle(color: Colors.white)),
                       selected:
                           selectedCategoryType.value == CategoryType.expense,
-                    
                       selectedColor: const Color.fromARGB(255, 153, 0, 0),
                       disabledColor: const Color.fromARGB(255, 122, 122, 122),
                       onSelected: (bool selected) {
                         setState(
                           () {
-                         
                             selectedCategoryType.value = CategoryType.expense;
 
                             _categoryId = null;
@@ -185,7 +180,6 @@ class _AddTransactionsState extends State<AddTransactions> {
                             onTap: () {
                               setState(
                                 () {
-                                  
                                   selectedCategoryModel = e;
                                 },
                               );

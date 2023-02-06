@@ -53,7 +53,9 @@ class _UpdateTransactionState extends State<UpdateTransaction> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title:  Text('Update', style: GoogleFonts.quicksand(color: const Color.fromARGB(255, 255, 255, 255))),
+        title: Text('Update',
+            style: GoogleFonts.quicksand(
+                color: const Color.fromARGB(255, 255, 255, 255))),
         centerTitle: true,
         backgroundColor: ThemeColor.themeColors,
       ),
@@ -118,7 +120,6 @@ class _UpdateTransactionState extends State<UpdateTransaction> {
                 children: <Widget>[
                   Flexible(
                     child: DropdownButtonFormField(
-                      
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please select category';
@@ -126,8 +127,6 @@ class _UpdateTransactionState extends State<UpdateTransaction> {
                         return null;
                       },
                       decoration: InputDecoration(
-                        
-                        
                           prefixIcon: const Icon(Icons.category),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),

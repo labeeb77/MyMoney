@@ -6,19 +6,8 @@ import 'package:money_manager/screens/transactoins/slidable_widget.dart';
 import '../../models/transaction/transaction_model.dart';
 import '../home/widgets/colors.dart';
 
-class RecentTransaction extends StatefulWidget {
+class RecentTransaction extends StatelessWidget {
   const RecentTransaction({super.key});
-
-  @override
-  State<RecentTransaction> createState() => _RecentTransactionState();
-}
-
-class _RecentTransactionState extends State<RecentTransaction> {
-  @override
-  void initState() {
-    TransactionsDB.instance.refresh();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +16,16 @@ class _RecentTransactionState extends State<RecentTransaction> {
       builder:
           (BuildContext context, List<TransactionModel> newList, Widget? _) {
         return newList.isEmpty
-            ?  Center(
-                child: Text('No transactions found',style: GoogleFonts.quicksand(color: ThemeColor.themeColors)),
+            ? Center(
+                child: Text('No transactions found',
+                    style:
+                        GoogleFonts.quicksand(color: ThemeColor.themeColors)),
               )
             : Padding(
                 padding: const EdgeInsets.only(right: 10, left: 10, top: 5),
                 child: ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
                     itemBuilder: (context, index) {
                       final trValue = newList[index];
                       return SlidableWidget(

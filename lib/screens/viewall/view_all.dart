@@ -16,7 +16,7 @@ class History extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
+
     TransactionsDB.instance.refresh();
     return Scaffold(
       resizeToAvoidBottomInset :false,
@@ -35,14 +35,17 @@ class History extends StatelessWidget {
           DateFilter()
         ],
       ),
-      body: Column(
-        children: const [
-          SearchAll(),
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: MyTransactions(),
-          ),
-        ],
+      body: SingleChildScrollView(
+        physics: const ScrollPhysics(),
+        child: Column(
+          children: const [
+            SearchAll(),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: MyTransactions(),
+            ),
+          ],
+        ),
       ),
     );
   }
